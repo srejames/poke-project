@@ -1,5 +1,8 @@
 // constants
 
+const searchBar = document.getElementById("search-bar");
+const cardContainer = document.getElementById("card-container");
+
 const cards = [
     {
         name: "Charizard",
@@ -19,12 +22,45 @@ const cards = [
     }
 ];
 
-const cardContainer = document.getElementById("card-container");
-
 // logic
 
-cards.forEach(card => {
-    const cardHTML = `
-        
-    `;
+function renderCards(cardsToRender) {
+    cardContainer.innerHTML = "";
+
+    cardsToRender.forEach(card => {
+        const trendClass = card.trend.startsWith("+")
+            ? "positive-trend"
+            : "negative-trend";
+
+        cardContainer.innerHTML += `
+            <div class="card">
+                <img src="${card.image}" alt = "${card.name}">
+                <h2>${card.name}</h2>
+
+                <div class="card-info">
+                    <p>${card.set}</p>
+                    <p class="right">${card.rarity}</p>
+
+                    <p>$${card.price.toFixed(2)}</p>
+                    <p class="right ${trendClass}">${card.trend}</p>
+                </div>
+            </div>
+        `;
+    });
+}
+
+renderCards(cards);
+
+searchBar.addEventListener("input", () => {
+    const searchText = searchBar.value.toLowerCase();
+    
+    const filteredCards = cards.filter(card => {
+        return (
+            card.name.toLowerCase().includes(searchText) ||
+            card.set.toLowerCase().includes(searchText) ||
+            card.rarity.toLowerCase().includes(searchText)
+        );
+    });
+
+    renderCards(filteredCards);
 });

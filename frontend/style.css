@@ -1,0 +1,72 @@
+/* global styling */
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+/* header */
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#search-bar {
+    width: 50%;
+    max-width: 600px;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+    padding: 10px;
+}
+
+/* card grid */
+
+#card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 300px));
+    gap: 20px;
+}
+
+/* card styling */
+
+.card {
+    border: 1px solid #000000;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+    padding: 20px;
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
+
+.card-info {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 20px;
+    row-gap: 8px;
+    align-items: center;
+}
+
+.card-info p {
+    margin: 0;
+}
+
+.right {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.positive-trend {
+    color: green;
+    font-weight: bold;
+}
+
+.negative-trend {
+    color: red;
+    font-weight: bold;
+}
