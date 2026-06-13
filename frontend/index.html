@@ -8,7 +8,22 @@
         <div class="header">
             <h1>Pokemon Market Analytics Tool</h1>
             <p>Search for cards and view simple market data.</p>
-            <input type="text" id="search-bar" placeholder="Search...">
+
+            <div class="filter-bar">
+                <input type="text" id="search-bar" placeholder="Search...">
+
+               <select id="rarity-filter">
+                    <option value="all">All</option>
+                    <option value="Holofoil">Holofoil</option>
+                    <option value="Full Art">Full Art</option>
+                </select>
+
+                <select id="trend-filter">
+                    <option value="all">All</option>
+                    <option value="up">Trending Up</option>
+                    <option value="down">Trending Down</option>
+                </select>
+            </div>
         </div>
 
         <div id="card-container"></div>

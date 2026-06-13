@@ -1,6 +1,8 @@
 // constants
 
 const searchBar = document.getElementById("search-bar");
+const rarityFilter = document.getElementById("rarity-filter");
+const trendFilter = document.getElementById("trend-filter");
 const cardContainer = document.getElementById("card-container");
 
 const cards = [
@@ -49,18 +51,34 @@ function renderCards(cardsToRender) {
     });
 }
 
-renderCards(cards);
-
-searchBar.addEventListener("input", () => {
+function applyFilters() {
     const searchText = searchBar.value.toLowerCase();
+    const selectedRarity = rarityFilter.value;
+    const selectedTrend = trendFilter.value;
     
     const filteredCards = cards.filter(card => {
-        return (
+        const matchesSearch =
             card.name.toLowerCase().includes(searchText) ||
             card.set.toLowerCase().includes(searchText) ||
-            card.rarity.toLowerCase().includes(searchText)
-        );
+            card.rarity.toLowerCase().includes(searchText);
+        
+        const matchesRarity =
+            selectedRarity === "all" ||
+            card.rarity === selectedRarity;
+        
+        const matchesTrend =
+            selectedTrend === "all" ||
+            (selectedTrend === "up" && card.trend.startsWith("+")) ||
+            (selectedTrend === "down" && card.trend.startsWith("-"));
+        
+            return matchesSearch && matchesRarity && matchesTrend;
     });
 
     renderCards(filteredCards);
-});
+}
+
+renderCards(cards);
+
+searchBar.addEventListener("input", applyFilters);
+rarityFilter.addEventListener("change", applyFilters);
+trendFilter.addEventListener("change", applyFilters);
